@@ -4,30 +4,38 @@
 
 #include <string>
 
-namespace TelCoColorCoder {
+namespace TelCoColorCoder
+{
+    enum MajorColor {WHITE, RED, BLACK, YELLOW, VIOLET};
+    enum MinorColor {BLUE, ORANGE, GREEN, BROWN, SLATE};
 
-    enum MajorColor { WHITE, RED, BLACK, YELLOW, VIOLET };
-    enum MinorColor { BLUE, ORANGE, GREEN, BROWN, SLATE };
-
-    const int numberOfMajorColors = 5;
-    const int numberOfMinorColors = 5;
-
-    extern const char* MajorColorNames[numberOfMajorColors];
-    extern const char* MinorColorNames[numberOfMinorColors];
+    extern const char* MajorColorNames[];
+    extern const char* MinorColorNames[];
+    extern const int numberOfMajorColors;
+    extern const int numberOfMinorColors;
 
     class ColorPair {
-    private:
-        MajorColor majorColor;
-        MinorColor minorColor;
-    public:
-        ColorPair(MajorColor major, MinorColor minor);
-        MajorColor getMajor();
-        MinorColor getMinor();
-        std::string ToString();
+        private:
+            MajorColor majorColor;
+            MinorColor minorColor;
+        public:
+            ColorPair(MajorColor major, MinorColor minor);
+            MajorColor getMajor();
+            MinorColor getMinor();
+            std::string ToString();
     };
 
     ColorPair GetColorFromPairNumber(int pairNumber);
     int GetPairNumberFromColor(MajorColor major, MinorColor minor);
 }
 
-#endif // COLOR_CODER_H
+void testNumberToPair(int pairNumber,
+    TelCoColorCoder::MajorColor expectedMajor,
+    TelCoColorCoder::MinorColor expectedMinor);
+
+void testPairToNumber(
+    TelCoColorCoder::MajorColor major,
+    TelCoColorCoder::MinorColor minor,
+    int expectedPairNumber);
+
+#endif
